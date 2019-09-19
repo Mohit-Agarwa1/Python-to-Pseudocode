@@ -16,6 +16,8 @@ def py_to_ps():
     subroutine = []
     global forloop
     forloop = []
+    global whiler
+    whiler = []
     with open('code.py', 'rb') as f:
         q = tokenize.tokenize(f.readline)
         ps = ''
@@ -28,9 +30,6 @@ def py_to_ps():
             print(i)
 
         while count != len(list_lex):
-
-
-
 
             i = list_lex[count]
 
@@ -46,7 +45,6 @@ def py_to_ps():
                         ps += '\n'
 
                         ps += 'ENDSUBROUTINE\n'
-
 
                         subroutine.remove(qut)
 
@@ -100,13 +98,22 @@ def py_to_ps():
                 elif i['string'] == 'if':
                     ps += 'IF '
                     iffer.append(indent)
+                elif i['string'] == 'while':
+                    ps += 'WHILE  '
+                    whiler.append(indent)
+                    thenner = False
+                elif i['string'] == 'append' or 'remove':
 
+                    q = i['string']
+                    ps += q
 
                 elif i['string'] == 'elif':
                     ps += 'ELSE IF '
                 elif i['string'] == 'else':
                     ps += 'ELSE '
                     count += 1
+                elif i == 'len':
+                    ps += 'LEN'
                 elif i['string'] == 'for' and 'range' in i['full_line']:
                     ps += 'FOR '
                     count += 1
@@ -154,10 +161,10 @@ def py_to_ps():
                         if indent == tfi:
                             if 'elif' not in i['full_line'] and 'else' not in i['full_line']:
                                 iffer.remove(tfi)
-                                print(tfi,i['full_line'])
+                                print(tfi, i['full_line'])
                                 ps += '\n'
                                 ps += '    ' * tfi
-                                ps+= 'ENDIF\n'
+                                ps += 'ENDIF\n'
                                 ps += '    ' * tfi
 
                 for tfi in forloop:
@@ -166,6 +173,13 @@ def py_to_ps():
                         ps += '\n'
                         ps += '    ' * tfi
                         ps += 'ENDFOR\n'
+                        ps += '    ' * tfi
+                for tfi in whiler:
+                    if indent == tfi:
+                        whiler.remove(tfi)
+                        ps += '\n'
+                        ps += '    ' * tfi
+                        ps += 'ENDWHILE\n'
                         ps += '    ' * tfi
 
 
