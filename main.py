@@ -27,7 +27,7 @@ def py_to_ps():
 
         for i in q:
             list_lex.append({'type': i.type, 'string': i.string, 'line': i.start[0], 'full_line': i.line})
-            print(i)
+            log(i)
 
         while count != len(list_lex):
 
