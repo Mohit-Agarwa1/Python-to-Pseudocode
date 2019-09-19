@@ -160,7 +160,7 @@ def py_to_ps():
                         if indent == tfi:
                             if 'elif' not in i['full_line'] and 'else' not in i['full_line']:
                                 iffer.remove(tfi)
-                                log(tfi,i['full_line'])
+                                
                                 ps += '\n'
                                 ps += '    ' * tfi
                                 ps+= 'ENDIF\n'
