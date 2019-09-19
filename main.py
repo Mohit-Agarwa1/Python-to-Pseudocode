@@ -25,7 +25,7 @@ def py_to_ps():
 
         for i in q:
             list_lex.append({'type': i.type, 'string': i.string, 'line': i.start[0], 'full_line': i.line})
-            log(i)
+            print(i)
 
         while count != len(list_lex):
 
@@ -58,7 +58,7 @@ def py_to_ps():
                     ps += '== '
                 elif i['string'] == ':':
                     if thenner != False:
-                        ps += 'THEN'
+                        ps += ' THEN '
                     thenner = True
                 elif i['string'] == '%':
                     ps += ' MOD '
@@ -91,6 +91,12 @@ def py_to_ps():
 
                     ps += fl['string']
                     count += 1
+                elif i['string'] == 'and':
+                    ps += ' AND '
+                elif i['string'] == 'or':
+                    ps += ' OR '
+                elif i['string'] == 'not':
+                    ps += ' NOT '
                 elif i['string'] == 'if':
                     ps += 'IF '
                     iffer.append(indent)
