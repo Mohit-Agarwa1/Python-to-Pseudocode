@@ -27,7 +27,7 @@ def py_to_ps():
 
         for i in q:
             list_lex.append({'type': i.type, 'string': i.string, 'line': i.start[0], 'full_line': i.line})
-            print(i)
+            log(i)
 
         while count != len(list_lex):
 
@@ -160,7 +160,7 @@ def py_to_ps():
                         if indent == tfi:
                             if 'elif' not in i['full_line'] and 'else' not in i['full_line']:
                                 iffer.remove(tfi)
-                                print(tfi,i['full_line'])
+                                log(tfi,i['full_line'])
                                 ps += '\n'
                                 ps += '    ' * tfi
                                 ps+= 'ENDIF\n'
@@ -189,8 +189,7 @@ def py_to_ps():
             count += 1
 
         print(ps)
-        with open('code.txt', 'w') as file:
-            file.write(ps)
+        
 
 
 py_to_ps()
