@@ -31,9 +31,6 @@ def py_to_ps():
 
         while count != len(list_lex):
 
-
-
-
             i = list_lex[count]
 
             line = []
@@ -48,7 +45,6 @@ def py_to_ps():
                         ps += '\n'
 
                         ps += 'ENDSUBROUTINE\n'
-
 
                         subroutine.remove(qut)
 
@@ -118,7 +114,7 @@ def py_to_ps():
                     count += 1
                     ps += list_lex[count]['string']
                     count += 1
-                    ps += ' <-- '
+                    ps += ' ← '
                     thenner = False
                     count += 3
                     ps += list_lex[count]['string']
@@ -129,7 +125,7 @@ def py_to_ps():
                     count += 1
                     forloop.append(indent)
                 elif i['string'] == 'for' and 'in' in i['full_line']:
-                    print('INVALID FOR TYPE: must be in form with range function or use different loop')
+                    log('INVALID FOR TYPE: must be in form with range function or use different loop')
                     ps += 'FOR '
                     count += 1
                     ps += list_lex[count]['string']
@@ -160,10 +156,10 @@ def py_to_ps():
                         if indent == tfi:
                             if 'elif' not in i['full_line'] and 'else' not in i['full_line']:
                                 iffer.remove(tfi)
-                                
+
                                 ps += '\n'
                                 ps += '    ' * tfi
-                                ps+= 'ENDIF\n'
+                                ps += 'ENDIF\n'
                                 ps += '    ' * tfi
 
                 for tfi in forloop:
@@ -189,7 +185,6 @@ def py_to_ps():
             count += 1
 
         print(ps)
-        
 
 
 py_to_ps()
