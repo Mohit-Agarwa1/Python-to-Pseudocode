@@ -43,8 +43,10 @@ def py_to_ps():
                 if qut[0] == indent:
                     if qut[1] != i['line'] and qut[1] + 1 != i['line']:
                         ps += '\n'
+                        ps += '    ' * qut[0]
 
                         ps += 'ENDSUBROUTINE\n'
+                        ps += '    ' * qut[0]
 
                         subroutine.remove(qut)
 
